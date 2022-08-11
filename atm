@@ -1,0 +1,83 @@
+import java.io.*;
+import java.lang.*;
+import java.util.*;
+import java.util.Scanner;
+
+class Person {
+    String Cname = "Raji";
+    String Adhaar = "1234 4678 9354 5423";
+    String Address = "xyz";
+
+}
+class Account extends Person {
+    int CurrentBal = 20000;
+    int Pin = 12345;
+    int AccNo = 1232323;
+
+}
+
+// Driver class
+public class Main {
+    public static void main(String[] args) {
+        int withdraw, deposit;
+        //create object for Account class
+        Account ac = new Account();
+        //create scanner class object to get choice of user
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter your PIN:");
+        int pin = sc.nextInt();
+        if (ac.Pin == pin) {
+            while (true) {
+                System.out.println("Automated Teller Machine");
+                System.out.println("Choose 1 for Withdraw");
+                System.out.println("Choose 2 for Deposit");
+                System.out.println("Choose 3 for Check Balance");
+                System.out.println("Choose 4 for EXIT");
+                System.out.print("Choose the operation you want to perform:");
+                //get choice from user
+                int choice = sc.nextInt();
+                switch (choice) {
+                    case 1:
+                        System.out.print("Enter money to be withdrawn:");
+                        //get the withdrawl money from user
+                        withdraw = sc.nextInt();
+                        //check whether the balance is greater than or equal to the withdrawal amount
+                        if (ac.CurrentBal >= withdraw) {
+                            //remove the withdrawl amount from the total balance
+                            ac.CurrentBal = ac.CurrentBal - withdraw;
+                            System.out.println("Please collect your money");
+                        } else {
+                            //show custom error message
+                            System.out.println("Insufficient Balance");
+                        }
+                        System.out.println("");
+                        break;
+                    case 2:
+                        System.out.print("Enter money to be deposited:");
+                        //get deposite amount from te user
+                        deposit = sc.nextInt();
+                        //add the deposit amount to the total balanace
+                        ac.CurrentBal = ac.CurrentBal + deposit;
+                        System.
+                        out.println("Your Money has been successfully depsited");
+                        System.out.println("");
+                        break;
+                    case 3:
+                        //displaying the total balance of the user
+                        System.out.println("Customer Name:" + ac.Cname);
+                        System.out.println("Adhaar Number:" + ac.Adhaar);
+                        System.out.println("Address:" + ac.Address);
+                        System.out.println("Current Balance:" + ac.CurrentBal);
+                        System.out.println("Account Number:" + ac.AccNo);
+                        System.out.println("");
+                        break;
+                    case 4:
+                        //exit from the menu
+                        System.exit(0);
+                }
+            }
+        } else {
+            System.out.println("Wrong PIN");
+        }
+    }
+}
